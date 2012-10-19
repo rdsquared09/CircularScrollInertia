@@ -21,6 +21,8 @@
 		8152249516310DB10041E7AB /* RDDRotationControlSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152249416310DB10041E7AB /* RDDRotationControlSurface.m */; };
 		8152249B163115880041E7AB /* DSC03672.png in Resources */ = {isa = PBXBuildFile; fileRef = 8152249A163115880041E7AB /* DSC03672.png */; };
 		8152249D163116B20041E7AB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8152249C163116B20041E7AB /* QuartzCore.framework */; };
+		815224C0163139E40041E7AB /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 815224BE163139E40041E7AB /* LICENSE.txt */; };
+		815224C1163139E40041E7AB /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 815224BF163139E40041E7AB /* README.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		8152249416310DB10041E7AB /* RDDRotationControlSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDDRotationControlSurface.m; sourceTree = "<group>"; };
 		8152249A163115880041E7AB /* DSC03672.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSC03672.png; sourceTree = "<group>"; };
 		8152249C163116B20041E7AB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		815224BE163139E40041E7AB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
+		815224BF163139E40041E7AB /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 		8152245E16310AA50041E7AB = {
 			isa = PBXGroup;
 			children = (
+				815224BE163139E40041E7AB /* LICENSE.txt */,
+				815224BF163139E40041E7AB /* README.txt */,
 				8152247316310AA50041E7AB /* CircularScrollInertiaDemo */,
 				8152246C16310AA50041E7AB /* Frameworks */,
 				8152246A16310AA50041E7AB /* Products */,
@@ -176,6 +182,8 @@
 				8152248416310AA50041E7AB /* Default-568h@2x.png in Resources */,
 				8152248A16310AA50041E7AB /* ViewController.xib in Resources */,
 				8152249B163115880041E7AB /* DSC03672.png in Resources */,
+				815224C0163139E40041E7AB /* LICENSE.txt in Resources */,
+				815224C1163139E40041E7AB /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +315,7 @@
 				8152248F16310AA50041E7AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -52,11 +52,10 @@
 					</object>
 					<object class="IBUIView" id="35988187">
 						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">256</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 70}, {320, 320}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -77,6 +76,7 @@
 					<bytes key="NSWhite">MC43NQA</bytes>
 					<reference key="NSCustomColorSpace" ref="280678433"/>
 				</object>
+				<bool key="IBUIAutoresizesSubviews">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">

@@ -10,7 +10,7 @@ TO USE:
 
 WATCH OUT
 	Two design choices which may change the way you interact with the API:
-	1. The angles which are calculated are in DEGREES, not radians, and, they are based on a full 360 degree circle, rather on the standard unit circle which consists of 0 to 180 degrees on the "top half" and 0 through -180 degrees on the bottom. What this amounts to is a coordinate system like this: 0 degrees to the right, 90 at top, 180 degrees to the left, and 270 down. If you only register for the rotationDidChangeByAngle:, the coordinate system doesn't make any difference.
+	1. The angles which are calculated are in DEGREES, not radians, and they are based on a full circle 360 degrees of positive rotation, rather than on the standard unit circle which consists of 0 to 180 degrees on the "top half" and 0 through -180 degrees on the bottom. What this amounts to is a coordinate system like this: 0 degrees to the right, 90 at top, 180 degrees to the left, and 270 down. If you only register for the rotationDidChangeByAngle: delegate method, the coordinate system doesn't make any difference anyway.
 	2. RDDRotationControlSurface is designed to be able to track rotations of over 360 degrees, so the _touchAngle and _angleOfRotation are separate. _touchAngle gives the absolute, 0-360 degree angle, while _angleOfRotation is based on the entire amount of rotation since the touch began, and therefore can be more than 360 degrees as well as positive or negative.
 
 

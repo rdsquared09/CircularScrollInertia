@@ -19,7 +19,7 @@
 
 @implementation ViewController
 
--(void)rotationChangedByAngle:(CGFloat)angle {
+-(void)rotationDidChangeByAngle:(CGFloat)angle {
     self.theImage.transform = CGAffineTransformRotate(self.theImage.transform, degreesToRadians(-angle));
 }
 

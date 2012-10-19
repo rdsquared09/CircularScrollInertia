@@ -13,7 +13,7 @@
                                     // Want circular motion, not jumping around the center.
 
 #define DECELERATION_RATE 0.97
-#define MAX_VELOCITY 1500.0
+#define MAX_VELOCITY 2000.0
 #define MIN_VELOCITY 10.0
 
 
@@ -33,13 +33,6 @@
     NSTimer *_inertiaTimer;
     CADisplayLink *_displayLink;
     CGFloat _animatingVelocity;
-    
-    NSTimeInterval  holdTime;       // Time required for a touch to register as a hold. Default is 1.5 seconds.
-    
-//    BOOL            _paused;
-//    BOOL            _interactionOn;
-//    BOOL            _tap;
-//    BOOL            _hold;
     
 }
 
@@ -150,8 +143,8 @@
     // Calculate starting angle between the touch location and the center of the view
     CGFloat angle = [self angleBetweenCenterAndPoint:point];
     
-    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(trackingBeganAtAngle:)]) {
-        [self.delegate trackingBeganAtAngle:angle];
+    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(trackingBeganAtAbsoluteAngle:)]) {
+        [self.delegate trackingDidBeginAtAbsoluteAngle:angle];
     }
     
     // Reset angleOfRotation
@@ -186,8 +179,8 @@
     if ([self squaredDistanceToCenter:point] > MIN_DISTANCE*MIN_DISTANCE) {
             _angleOfRotation += change;
             if (fabs(change) < 90.0f) {
-                    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(rotationChangedByAngle:)]) {
-                        [self.delegate rotationChangedByAngle:change];
+                    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(rotationDidChangeByAngle:)]) {
+                        [self.delegate rotationDidChangeByAngle:change];
                     }
             }
     }
@@ -204,8 +197,8 @@
     CGPoint point = [[touches anyObject] locationInView:self];
     CGFloat angle = [self angleBetweenCenterAndPoint:point];
     
-    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(trackingEndedAtAngle:)]) {
-        [self.delegate trackingEndedAtAngle:angle];
+    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(trackingDidEndAtAbsoluteAngle:)]) {
+        [self.delegate trackingDidEndAtAbsoluteAngle:angle withDeceleration:_inertiaEnabled];
     }
     
     _angleOfRotation = 0.0f;
@@ -264,7 +257,7 @@
 //    NSLog(@"Velocity: %f", v);
     
     // Taking a risk here that the delegate will not change or be destroyed while we're in the middle of animating the deceleration
-    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(rotationChangedByAngle:)]) {
+    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(rotationDidChangeByAngle:)]) {
         if (v >= MIN_VELOCITY || v <= -MIN_VELOCITY) {
             _decelerating = YES;
             _animatingVelocity = v;
@@ -286,17 +279,23 @@
     
     else {
         _animatingVelocity = newVelocity;
-        [self.delegate rotationChangedByAngle:changeThisFrame];
+        [self.delegate rotationDidChangeByAngle:changeThisFrame];
     }
     
 }
 
 -(void)endDeceleration {
     _decelerating = NO;
-    [_displayLink invalidate], _displayLink = NO;
+    [_displayLink invalidate], _displayLink = nil;
+    
+    if (self.delegate != NULL && [self.delegate respondsToSelector:@selector(decelerationDidEnd)]) {
+        [self.delegate decelerationDidEnd];
+    }
 }
 
 -(void)startInertiaTimer {
+    
+    // Used to clear out movement once the user has stopped moving for the specified time period. Prevents "leftover" inertia if the user moves, but then stops moving before lifting their finger.
     if (_inertiaTimer) {
         [_inertiaTimer invalidate];
         _inertiaTimer = nil;
@@ -312,6 +311,8 @@
 
 -(void)inertiaTimout {
     _inertiaTimer = nil;
+    _startTouchTime = _endTouchTime = [NSDate timeIntervalSinceReferenceDate];
+    _angleChange = 0;
 }
 
 

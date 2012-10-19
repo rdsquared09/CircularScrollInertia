@@ -38,9 +38,10 @@
 @protocol RDDRotationControlSurfaceDelegate <NSObject>
 @optional
 
--(void)trackingBeganAtAngle:(CGFloat)angle;               // The absolute initial angle where the touch began.
--(void)rotationChangedByAngle:(CGFloat)angle;             // Just report the change since the last cycle.
--(void)trackingEndedAtAngle:(CGFloat)angle;               // The absolute angle
+-(void)trackingDidBeginAtAbsoluteAngle:(CGFloat)angle;
+-(void)rotationDidChangeByAngle:(CGFloat)angle;            // Just report the change since the last cycle.
+-(void)trackingDidEndAtAbsoluteAngle:(CGFloat)angle withDeceleration:(BOOL)decelerating; // If deceleration is YES, then the delegate knows that subsequent rotationDidChangeByAngle calls are coming from the deceleration.
+-(void)decelerationDidEnd;
 -(void)trackingCanceled;
 
 @end

@@ -32,8 +32,7 @@
 //  Information about the angle and rotation is then sent to a delegate object.
 /*****************************************************************/
 
-#import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 @protocol RDDRotationControlSurfaceDelegate <NSObject>
 @optional
